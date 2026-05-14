@@ -1,24 +1,91 @@
 # Diver
 
-Project artifact for:
-
 **Hybrid Program Dependence Approximation for Effective Dynamic Impact Prediction**
 
-- Original artifact URL: <http://chapering.github.io/projects/diver/>
-- Imported via `pubs2github` from the publications page
-- Downloader: `page` — Downloaded 4 asset(s) linked from project page
+| | |
+|---|---|
+| Original artifact | <http://chapering.github.io/projects/diver/> |
+| Imported from | the publications page |
+| Tool | `pubs2github` |
 
 
-## Other papers using the same artifact
+## Other papers sharing this artifact
 
 - DiaPro: Unifying Dynamic Impact Analyses for Improved and Variable Cost-Effectiveness
 - A Framework for Cost-effective Dependence-based Dynamic Impact Analysis
 - Diver: Precise Dynamic Impact Analysis Using Dependence-based Trace Pruning
 
-This repository was created automatically. The contents under this
-directory mirror what was downloaded from the original artifact link
-above; refer to that source for the authoritative version, licensing,
-and any updates.
+---
+
+## Contents
+
+The artifact contains 314 file(s) including Java, C/C++, Config files, and Documentation.
+
+```
+├── mcia_release
+│   ├── libs
+│   │   ├── duaf.jar
+│   │   ├── jasminclasses-2.3.0.jar
+│   │   ├── java_cup.jar
+│   │   ├── polyglot.jar
+│   │   ├── rt.jar
+│   │   └── sootclasses-2.3.0.jar
+│   ├── src
+│   │   ├── Diver
+│   │   ├── EAS
+│   │   └── MciaUtil
+│   └── build.xml
+├── Nano.tdv1
+│   ├── inputs
+│   │   └── testinputs.txt
+│   ├── inputs-lnx
+│   │   ├── database.xml
+│   │   ├── database_sc_1.xml
+│   │   ├── double_dtd.xml
+│   │   ├── emptyelem1_wy.xml
+│   │   ├── emptyelem2_wy.xml
+│   │   ├── emptyelem3_wy.xml
+│   │   ├── emptyfile_sc_2.xml
+│   │   ├── file10_wy.xml
+│   │   ├── file11_wy.xml
+│   │   ├── file12_wy.xml
+│   │   ├── file1_wy.xml
+│   │   ├── file2_wy.xml
+│   │   ├── file3_wy.xml
+│   │   ├── file4_wy.xml
+│   │   ├── file5_wy.xml
+│   │   ├── file6_wy.xml
+│   │   ├── file7_wy.xml
+│   │   ├── file8_wy.xml
+│   │   ├── file9_wy.xml
+│   │   ├── include.ent
+│   │   ├── internal_dtd.xml
+│   │   ├── manydbnames_sc_3.xml
+│   │   ├── manydbversions_sc_4.xml
+│   │   ├── manyfielddefaults_sc_5.xml
+│   │   ├── manyfielddesc_sc_6.xml
+│   │   ├── manyfieldlength_sc_7.xml
+│   │   ├── manyfieldnames_sc_8.xml
+│   │   ├── manyfieldtypes_sc_9.xml
+│   │   ├── manyindexnames_sc_10.xml
+│   │   ├── manyindexref_sc_11.xml
+│   │   ├── manyindextypes_sc_12.xml
+│   │   ├── manytabledesc_sc_13.xml
+│   │   ├── manytablenames_sc_14.xml
+│   │   ├── ModifyList
+│   │   ├── namespaces.xml
+│   │   ├── nodbname_sc_15.xml
+│   │   ├── nofieldnames_sc_16.xml
+│   │   ├── nofieldtypes_sc_17.xml
+│   │   ├── noindexcolumns_sc_18.xml
+│   │   ├── noindextypes_sc_19.xml
+│   │   ├── notablefields_sc_20.xml
+│   │   ├── notablenames_sc_21.xml
+│   │   ├── notables_sc_22.xml
+│   │   … (157 more items)
+│   … (242 more items)
+… (329 more items)
+```
 
 ---
 
