@@ -1,0 +1,58 @@
+<!DOCTYPE database [
+	<!ELEMENT name (#PCDATA)>
+
+<!ELEMENT description (#PCDATA)>
+
+<!ELEMENT version (#PCDATA)>
+
+<!ELEMENT table (name, description?, field+, index*)>
+
+<!ELEMENT field (name, description?, type, length?, option*, default?)>
+
+<!ELEMENT index (type, name?, column+, references?)>
+
+<!ELEMENT type (#PCDATA)>
+
+<!ELEMENT length (#PCDATA)>
+
+<!ELEMENT option (#PCDATA)>
+
+<!ELEMENT default (#PCDATA)>
+
+<!ELEMENT column (#PCDATA)>
+
+<!ELEMENT references (#PCDATA)>
+]>
+
+
+  <name>foo</name>
+  <description>A database for storing random stuff</description>
+  <version>1.0</version>
+
+  <table>
+    <name>bar</name>
+    <description>A table for storing random stuff</description>
+  
+    <field>
+      <name>bar_id</name>
+      <description>unique identifier for each bar</description>
+      <type>int</type>
+      <option>not null</option>
+      <option>auto_increment</option>
+    </field>
+
+    <field>
+      <name>bar_name</name>
+      <description>name for each bar</description>
+      <type>varchar</type>
+      <length>255</length>
+      <option>not null</option>
+    </field>
+
+    <index>
+      <type>primary key</type>
+      <column>bar_id</column>
+    </index>
+  </table>
+
+</database>

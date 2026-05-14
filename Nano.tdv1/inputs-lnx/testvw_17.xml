@@ -1,0 +1,6 @@
+<!-- vazzie -->
+<!DOCTYPE FOO SYSTEM "../Nano.tdv1/inputs-lnx/test.dtd" [
+    <!ENTITY % extParamEntity "blah">
+]>
+<FOO>&value;</FOO>
+

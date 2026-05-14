@@ -1,0 +1,70 @@
+<!--
+TYPICAL INVOCATION:
+#  <!DOCTYPE database SYSTEM "../Nano.tdv1/inputs-lnx/sql-structure.dtd">
+
+PURPOSE:
+  This is an XML dtd for defining the structure of a SQL database.
+
+DEPENDENCIES:
+  None.
+
+CHANGE HISTORY:
+  02 Oct 2000 - Added version tag under database tag
+  30 May 2000 - Created
+
+MAINTAINER:
+  Kyle Smith
+  Capitol College
+  ksmith@capitol-college.edu
+-->
+
+<!-- ....................................................................... -->
+<!-- Entities for common attributes ........................................ -->
+<!-- ....................................................................... -->
+
+<!--	Common attributes:
+	Every element has an ID attribute (sometimes required,
+	but usually optional) for links, and a Role attribute
+	for extending the useful life of the DTD by allowing
+	authors to make subclasses for any element. common.att;
+	is for common attributes where the ID is optional, and
+	common-idreq.att; is for common attributes where the
+	ID is required. -->
+<!ENTITY % common.att
+	'id		ID		#IMPLIED
+	role		NMTOKEN		#IMPLIED'>
+<!ENTITY % common-idreq.att
+	'id		ID		#IMPLIED
+	role		NMTOKEN		#IMPLIED'>
+
+<!-- ....................................................................... -->
+<!-- Elements .............................................................. -->
+<!-- ....................................................................... -->
+
+<!--	This is the top-level container -->
+<!ELEMENT database (name, description?, version?, table+)>
+
+
+<!ELEMENT name (#PCDATA)>
+
+<!ELEMENT description (#PCDATA)>
+
+<!ELEMENT version (#PCDATA)>
+
+<!ELEMENT table (name, description?, field+, index*)>
+
+<!ELEMENT field (name, description?, type, length?, option*, default?)>
+
+<!ELEMENT index (type, name?, column+, references?)>
+
+<!ELEMENT type (#PCDATA)>
+
+<!ELEMENT length (#PCDATA)>
+
+<!ELEMENT option (#PCDATA)>
+
+<!ELEMENT default (#PCDATA)>
+
+<!ELEMENT column (#PCDATA)>
+
+<!ELEMENT references (#PCDATA)>

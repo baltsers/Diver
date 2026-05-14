@@ -1,0 +1,5 @@
+<FOO unit="LB" weight="80" direction="north" age="20">
+	<BAR9>a<![CDATA[b]]>c</BAR9>
+	&lt;&amp;&gt;&quot;&apos;&#33;&#x3A;&#x2030;
+</FOO>
+

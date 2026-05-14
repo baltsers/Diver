@@ -1,0 +1,7 @@
+<!ENTITY % extParamEntity SYSTEM "../Nano.tdv1/inputs-lnx/include.ent">
+<!ENTITY value "%extParamEntity;">
+<!ELEMENT FOO (#PCDATA)>
+<!ATTLIST FOO 
+        x CDATA #REQIRED
+        y CDATA #FIXED "fixedValue"
+        z CDATA "defaultValue">

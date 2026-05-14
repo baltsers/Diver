@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="Nano.tdv1">
+    <property environment="env"/>
+    <property name="NanoXML.location" value="../NanoXML"/>
+    <property name="mcia_release.location" value="../mcia_release"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.6"/>
+    <property name="source" value="1.6"/>
+    <path id="mcia_release.classpath">
+        <pathelement location="${mcia_release.location}/bin"/>
+        <pathelement location="${mcia_release.location}/libs/duaf.jar"/>
+        <pathelement location="${mcia_release.location}/libs/jasminclasses-2.3.0.jar"/>
+        <pathelement location="${mcia_release.location}/libs/java_cup.jar"/>
+        <pathelement location="${mcia_release.location}/libs/polyglot.jar"/>
+        <pathelement location="${mcia_release.location}/libs/sootclasses-2.3.0.jar"/>
+    </path>
+    <path id="NanoXML.classpath">
+        <pathelement location="${NanoXML.location}/bin"/>
+    </path>
+    <path id="Nano.tdv1.classpath">
+        <pathelement location="bin"/>
+        <path refid="mcia_release.classpath"/>
+        <path refid="NanoXML.classpath"/>
+    </path>
+    <target name="init">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="bin"/>
+    </target>
+    <target depends="clean" name="cleanall">
+        <ant antfile="build.xml" dir="${NanoXML.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${mcia_release.location}" inheritAll="false" target="clean"/>
+    </target>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects">
+        <ant antfile="build.xml" dir="${NanoXML.location}" inheritAll="false" target="build-project"/>
+        <ant antfile="build.xml" dir="${mcia_release.location}" inheritAll="false" target="build-project"/>
+    </target>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
+            <src path="src"/>
+            <classpath refid="Nano.tdv1.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+</project>

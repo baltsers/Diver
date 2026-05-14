@@ -1,0 +1,18 @@
+<FOO unit="LB" weight="80" direction="north" age="20">
+	<BAR1/>
+  <BAR2 x='1'/>
+	<BAR3 x='1' y='2'/>
+	This elem contain some data with posi higher than BAR6.
+	<BAR4>
+	  <BAR5/>
+		<BARBAR1/>
+		<BA1/>
+		<FOO1/>
+  </BAR4>
+	<BAR6>blah</BAR6>
+	<BAR7 x='1'>blah</BAR7>
+	<BAR8><![CDATA[<&>'"]]></BAR8>
+	<BAR9>a<![CDATA[b]]>c</BAR9>
+	
+</FOO>
+

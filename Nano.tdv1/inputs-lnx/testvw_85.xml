@@ -1,0 +1,12 @@
+<!DOCTYPE FOO [
+    <!ENTITY % extParamEntity SYSTEM "../Nano.tdv1/inputs-lnx/include.ent">
+    <!ENTITY value "%extParamEntity;">
+    <!ELEMENT FOO (#PCDATA)>
+    <!ATTLIST FOO 
+        x CDATA #REQUIRED
+        y CDATA #FIXED "fixedValue"
+        z CDATA "defaultValue">
+]>
+<!-- comments -->
+<FOO x='1' y='2' z='3' a='7'>&value;</FOO>
+

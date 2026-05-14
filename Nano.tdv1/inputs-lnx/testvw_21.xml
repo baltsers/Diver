@@ -1,0 +1,5 @@
+<!DOCTYPE FOO SYSTEM "../Nano.tdv1/inputs-lnx/test1.dtd" [
+    <!ENTITY % extParamEntity "blah">
+]>
+<FOO x='1'>&value;</FOO>
+

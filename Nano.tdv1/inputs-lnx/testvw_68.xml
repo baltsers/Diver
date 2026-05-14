@@ -1,0 +1,8 @@
+<!-- comments -->
+<!DOCTYPE FOO SYSTEM '../Nano.tdv1/inputs-lnx/test.dtd' [
+    <!ENTITY % extParamEntity "blah">
+]>
+<FOO x='1' y='2' z='3'>test
+<BAR>vaz</BAR>
+</FOO>
+

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="mcia_release">
+    <property environment="env"/>
+    <property name="Nano.tdv1.location" value="../Nano.tdv1"/>
+    <property name="Nano.xml.location" value="../NanoXML"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.6"/>
+    <property name="source" value="1.6"/>
+    <path id="mcia_release.classpath">
+        <pathelement location="bin"/>
+        <pathelement location="libs/duaf.jar"/>
+        <pathelement location="libs/jasminclasses-2.3.0.jar"/>
+        <pathelement location="libs/java_cup.jar"/>
+        <pathelement location="libs/polyglot.jar"/>
+        <pathelement location="libs/sootclasses-2.3.0.jar"/>
+    </path>
+    <target name="init">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="bin"/>
+    </target>
+    <target description="Clean up all that are generated" depends="clean" name="cleanall">
+		<delete dir="easout"/>
+		<delete dir="diverout"/>
+		<delete dir="easInstrumented"/>
+		<delete dir="diverInstrumented"/>
+	</target>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target depends="build-subject" name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
+            <src path="src"/>
+            <classpath refid="mcia_release.classpath"/>
+        </javac>
+    </target>
+    <target name="build-subject">
+        <ant antfile="build.xml" dir="${Nano.tdv1.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${Nano.tdv1.location}" inheritAll="false" target="build"/>
+    </target>
+    <target name="clean-subject">
+        <ant antfile="build.xml" dir="${Nano.tdv1.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${Nano.xml.location}" inheritAll="false" target="clean"/>
+    </target>
+    <target description="Instrument the example subject NanoXML with Diver" depends="build" name="diver_inst">
+        <java classname="Diver.DiverInst" failonerror="true" fork="yes">
+            <jvmarg line="-ea -Xmx4g"/>
+            <arg line="-w -cp .:../mcia_release/libs/polyglot.jar:../mcia_release/libs/rt.jar:../mcia_release/libs/sootclasses-2.3.0.jar:../mcia_release/libs/java_cup.jar:../mcia_release/libs/jasminclasses-2.3.0.jar:../mcia_release/libs/duaf.jar:../mcia_release/bin:../Nano.tdv1/bin:../NanoXML/bin -p cg verbose:true,implicit-entry:false -p cg.spark verbose:true,on-fly-cg:true,rta:true -f c -d  diverInstrumented -brinstr:off -duainstr:off -dumpJimple -slicectxinsens -interCD -intraCD -ignoreRTECD -exInterCD -serializeVTG -wrapTryCatch -allowphantom -main-class AllDriversMain -entry:AllDriversMain -process-dir ../Nano.tdv1/bin -process-dir ../NanoXML/bin"/>
+            <classpath refid="mcia_release.classpath"/>
+        </java>
+    </target>
+    <target description="Instrument the example subject NanoXML with EAS" depends="build" name="eas_inst">
+        <java classname="EAS.EAInst" failonerror="true" fork="yes">
+            <jvmarg line="-ea -Xmx4g"/>
+            <arg line="-w -cp .:../mcia_release/libs/polyglot.jar:../mcia_release/libs/rt.jar:../mcia_release/libs/sootclasses-2.3.0.jar:../mcia_release/libs/java_cup.jar:../mcia_release/libs/jasminclasses-2.3.0.jar:../mcia_release/libs/duaf.jar:../mcia_release/bin:../Nano.tdv1/bin:../NanoXML/bin -p cg verbose:true,implicit-entry:false -p cg.spark verbose:true,on-fly-cg:true,rta:true -f c -d  easInstrumented -brinstr:off -duainstr:off -dumpJimple -slicectxinsens -dumpFunctionList -wrapTryCatch -allowphantom -main-class AllDriversMain -entry:AllDriversMain -process-dir ../Nano.tdv1/bin -process-dir ../NanoXML/bin"/>
+            <classpath refid="mcia_release.classpath"/>
+        </java>
+    </target>
+    <target description="Run EAS-instrumented code to produce method traces used by EAS" depends="eas_inst" name="eas_run">
+        <java classname="EAS.EARun" failonerror="true" fork="yes">
+            <jvmarg line="-ea -Xmx4g"/>
+            <arg line="AllDriversMain ../Nano.tdv1/ ../mcia_release/easInstrumented &quot;&quot; ../mcia_release/easout"/>
+            <classpath refid="mcia_release.classpath"/>
+        </java>
+    </target>
+    <target description="Run Diver-instrumented code to produce method traces used by Diver" depends="diver_inst" name="diver_run">
+        <java classname="Diver.DiverRun" failonerror="true" fork="yes">
+            <jvmarg line="-ea -Xmx4g"/>
+            <arg line="AllDriversMain ../Nano.tdv1/ ../mcia_release/diverInstrumented &quot;&quot; ../mcia_release/diverout"/>
+            <classpath refid="mcia_release.classpath"/>
+        </java>
+    </target>
+    <target description="Get the impact set of an example query from Diver" depends="diver_run" name="diver_query">
+        <java classname="Diver.DiverAnalysis" failonerror="true" fork="yes">
+            <jvmarg line="-ea -Xmx4g"/>
+            <arg line="&quot;net.n3.nanoxml.StdXMLReader: int getLineNr()&quot; ../mcia_release/diverout ../mcia_release/diverInstrumented 214"/>
+            <classpath refid="mcia_release.classpath"/>
+        </java>
+    </target>
+    <target description="Get the impact set of an example query from EAS" depends="eas_run" name="eas_query">
+        <java classname="EAS.EAAnalysis" failonerror="true" fork="yes">
+            <jvmarg line="-ea -Xmx4g"/>
+            <arg line="&quot;net.n3.nanoxml.StdXMLReader: int getLineNr()&quot; ../mcia_release/easout 214"/>
+            <classpath refid="mcia_release.classpath"/>
+        </java>
+    </target>
+</project>

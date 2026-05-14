@@ -1,0 +1,17 @@
+<FOO>
+    <BAR/>
+    <BAR/>
+    <BAR/>
+    <BAR>
+        <BAR/>
+        <BARBAR/>
+        <BA/>
+        <FOO/>
+    </BAR>
+    <BAR>blah</BAR>
+    <BAR>blah</BAR>
+    <BAR><![CDATA[<&>'"]]></BAR>
+    <BAR>a<![CDATA[b]]>c</BAR>
+	&lt;&amp;&gt;&quot;&apos;&#33;&#x3A;&#x2030;
+</FOO>
+

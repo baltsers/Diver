@@ -1,0 +1,18 @@
+<!DOCTYPE database SYSTEM "../Nano.tdv1/inputs-lnx/sql-structure.dtd">
+
+<database>
+  <name>foo</name>
+  <description>A database for storing random stuff</description>
+  <version>1.0</version>
+
+  <table>
+    <name>bar</name>
+    <description>A table for storing random stuff</description>
+  
+    <index>
+      <type>primary key</type>
+      <column>bar_id</column>
+    </index>
+  </table>
+
+</database>
